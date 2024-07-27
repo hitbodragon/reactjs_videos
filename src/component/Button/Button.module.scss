@@ -1,0 +1,77 @@
+.wrapper {
+    display: inline-flex;
+    align-items: center;
+    font-size: 1.2rem;
+    border-radius: 4px;
+    font-weight: 600;
+    min-width: 100px;
+    padding: 9px 16px;
+    cursor: pointer;
+    background-color: var(--white);
+    border: 1px solid transparent;
+    user-select: none;
+    // bỏ select cả chữ
+
+    // đứng cạnh nhau là cách nhau
+    + .wrapper {
+        margin-left: 8px;
+    }
+    &.disable {
+        pointer-events: none;
+        // tắt sự kiện chuột
+        opacity: 0.5;
+    }
+}
+
+// buton types
+.primary {
+    color: var(--white);
+    background-color: var(--primary);
+    border-color: var(--primary);
+
+    &:hover {
+        border-color: var(--primary);
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.06)), #fe2c55;
+    }
+}
+.outline {
+    color: var(--primary);
+    border-color: currentColor;
+
+    &:hover {
+        background-color: rgba(254, 44, 85, 0.06);
+    }
+}
+// button sizes
+.small {
+    min-width: 80px;
+    padding: 4px 16px;
+}
+.large {
+    min-width: 132px;
+    padding: 14px 16px;
+}
+.text {
+    &:hover {
+        text-decoration: underline;
+    }
+}
+.rounded {
+    border-radius: 999px;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 6%);
+    border-color: rgba(22, 24, 35, 0.12);
+    padding: 5px 10px;
+
+    &:hover {
+        background-color: rgba(22, 24, 35, 0.08);
+        border-color: rgba(22, 24, 35, 0.16);
+    }
+}
+
+.icon + .title,
+.title + .icon {
+    margin-left: 8px;
+}
+.icon {
+    text-align: center;
+}
