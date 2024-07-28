@@ -9,10 +9,31 @@ import { Wrapper as PopperWrapper } from '~/component/Popper';
 import styles from './Header.module.scss';
 import images from '~/assets/images';
 import AccountItem from '../AccountIteam';
+import { SlOptionsVertical } from 'react-icons/sl';
+import Menu from '~/component/Popper/Menu';
+import { MdLanguage } from 'react-icons/md';
+import { HiOutlineQuestionMarkCircle } from 'react-icons/hi2';
+import { CiKeyboard } from 'react-icons/ci';
+
 // import { faCircleXmark } from '@fortawesome/free-regular-svg-icons';
 // import { faMagnifyingGlass, faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 const cx = classNames.bind(styles);
+const MENU_ITEMS = [
+    {
+        icon: <MdLanguage />,
+        title: 'Language',
+    },
+    {
+        icon: <HiOutlineQuestionMarkCircle />,
+        title: 'Feedback and helps',
+        to: '/feedback/help',
+    },
+    {
+        icon: <CiKeyboard />,
+        title: 'keyboards shortcuts',
+    },
+];
 
 function Header() {
     const [searchResults, setSearchResults] = useState([]);
@@ -31,14 +52,14 @@ function Header() {
                     interactive
                     visible={searchResults.length > 0}
                     render={(attrs) => (
-                        <PopperWrapper>
-                            <div className={cx('search-result')} tabIndex="-1" {...attrs}>
+                        <div className={cx('search-result')} tabIndex="-1" {...attrs}>
+                            <PopperWrapper>
                                 <h4 className={cx('search-title')}> Acounts</h4>
                                 <AccountItem />
                                 <AccountItem />
                                 <AccountItem />
-                            </div>
-                        </PopperWrapper>
+                            </PopperWrapper>
+                        </div>
                     )}
                 >
                     <div className={cx('search')}>
@@ -56,6 +77,12 @@ function Header() {
                 <div className={cx('actions')}>
                     <Button text>Upload</Button>
                     <Button primary>Login</Button>
+
+                    <Menu items={MENU_ITEMS}>
+                        <button className={cx('more-btn')}>
+                            <SlOptionsVertical />
+                        </button>
+                    </Menu>
                 </div>
             </div>
         </header>
