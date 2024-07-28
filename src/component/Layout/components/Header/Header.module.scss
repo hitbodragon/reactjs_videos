@@ -5,13 +5,15 @@
     --search-button-width: 52px;
     height: var(---default-layout-header-height, 60px); // ko cos biến nó lấy gt mặt định là 60px
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 1px;
+    width: 100%;
     display: flex;
     justify-content: center;
 }
 .inner {
     height: 100%;
-    width: var(---default-layout-header-width, 1150px);
+    width: var(---default-layout-width, 1150px);
     display: flex;
+    padding: 0 var(---default-layout-horizontal-spacer);
     align-items: center;
     justify-content: space-between;
 }
@@ -96,4 +98,5 @@
     margin-left: 20px;
     background-color: transparent;
     padding: 4px 10px;
+    cursor: pointer;
 }

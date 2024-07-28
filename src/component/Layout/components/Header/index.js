@@ -23,11 +23,26 @@ const MENU_ITEMS = [
     {
         icon: <MdLanguage />,
         title: 'Language',
+        children: {
+            title: 'Language',
+            data: [
+                {
+                    type: 'language',
+                    code: 'en',
+                    title: 'English',
+                },
+                {
+                    type: 'language',
+                    code: 'vi',
+                    title: 'Tiếng Việt',
+                },
+            ],
+        },
     },
     {
         icon: <HiOutlineQuestionMarkCircle />,
         title: 'Feedback and helps',
-        to: '/feedback/help',
+        to: '/feedback',
     },
     {
         icon: <CiKeyboard />,
@@ -42,6 +57,17 @@ function Header() {
             setSearchResults([]);
         }, 0);
     });
+    // Handle logc
+    const handleMenuChange = (menuItem) => {
+        switch (menuItem.type) {
+            case 'language':
+                // handle language change
+                break;
+            default:
+                // handle other menu items
+                break;
+        }
+    };
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
@@ -78,7 +104,7 @@ function Header() {
                     <Button text>Upload</Button>
                     <Button primary>Login</Button>
 
-                    <Menu items={MENU_ITEMS}>
+                    <Menu items={MENU_ITEMS} onChange={handleMenuChange}>
                         <button className={cx('more-btn')}>
                             <SlOptionsVertical />
                         </button>
