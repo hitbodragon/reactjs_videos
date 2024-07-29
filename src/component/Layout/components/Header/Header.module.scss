@@ -91,7 +91,11 @@
         }
     }
 }
-
+// Actions
+.actions {
+    display: flex;
+    align-items: center;
+}
 .more-btn {
     font-size: 16px;
     color: #0c0c0c;
@@ -99,4 +103,17 @@
     background-color: transparent;
     padding: 4px 10px;
     cursor: pointer;
+}
+.action-btn {
+    background-color: transparent;
+    font-size: 2rem;
+    color: #161823;
+    padding: 8px 10px 0;
+    cursor: pointer;
+}
+.user-avatar {
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+    border-radius: 50%;
 }

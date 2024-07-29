@@ -2,7 +2,8 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import classNames from 'classnames/bind';
 import { AiTwotoneCloseCircle, AiOutlineSearch, AiOutlineLoading } from 'react-icons/ai';
-import Tippy from '@tippyjs/react/headless';
+import Tippy from '@tippyjs/react';
+import HeadlessTippy from '@tippyjs/react/headless';
 
 import Button from '~/component/Button';
 import { Wrapper as PopperWrapper } from '~/component/Popper';
@@ -14,6 +15,12 @@ import Menu from '~/component/Popper/Menu';
 import { MdLanguage } from 'react-icons/md';
 import { HiOutlineQuestionMarkCircle } from 'react-icons/hi2';
 import { CiKeyboard } from 'react-icons/ci';
+import { IoCloudUploadOutline } from 'react-icons/io5';
+import 'tippy.js/dist/tippy.css';
+import { CiUser } from 'react-icons/ci';
+import { FaCoins } from 'react-icons/fa';
+import { CiSettings } from 'react-icons/ci';
+import { IoIosLogOut } from 'react-icons/io';
 
 // import { faCircleXmark } from '@fortawesome/free-regular-svg-icons';
 // import { faMagnifyingGlass, faSpinner } from '@fortawesome/free-solid-svg-icons';
@@ -68,13 +75,39 @@ function Header() {
                 break;
         }
     };
+    const currentUser = true;
+    const userMenu = [
+        {
+            icon: <CiUser />,
+            title: 'View profile',
+            to: '/@hoaa',
+        },
+        {
+            icon: <FaCoins />,
+            title: 'Get coins',
+            to: '/coin',
+        },
+        {
+            icon: <CiSettings />,
+            title: 'Settings',
+            to: '/settings',
+        },
+
+        ...MENU_ITEMS,
+        {
+            icon: <IoIosLogOut />,
+            title: 'Log out',
+            to: '/logout',
+            separate: true,
+        },
+    ];
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
                 <div className={cx('logo')}>
                     <img src={images.logo} alt="tiktok" />
                 </div>
-                <Tippy
+                <HeadlessTippy
                     interactive
                     visible={searchResults.length > 0}
                     render={(attrs) => (
@@ -99,15 +132,34 @@ function Header() {
                             <AiOutlineSearch />
                         </button>
                     </div>
-                </Tippy>
+                </HeadlessTippy>
                 <div className={cx('actions')}>
-                    <Button text>Upload</Button>
-                    <Button primary>Login</Button>
-
-                    <Menu items={MENU_ITEMS} onChange={handleMenuChange}>
-                        <button className={cx('more-btn')}>
-                            <SlOptionsVertical />
-                        </button>
+                    {currentUser ? (
+                        <>
+                            <Tippy content="Upload video" placement="bottom" delay={[0, 200]}>
+                                <button className={cx('action-btn')}>
+                                    <IoCloudUploadOutline />
+                                </button>
+                            </Tippy>
+                        </>
+                    ) : (
+                        <>
+                            <Button text>Upload</Button>
+                            <Button primary>Login</Button>
+                        </>
+                    )}
+                    <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
+                        {currentUser ? (
+                            <img
+                                src="https://cdn.pixabay.com/photo/2015/04/24/20/58/girl-738303_960_720.jpg"
+                                className={cx('user-avatar')}
+                                alt="Nguyen van a"
+                            />
+                        ) : (
+                            <button className={cx('more-btn')}>
+                                <SlOptionsVertical />
+                            </button>
+                        )}
                     </Menu>
                 </div>
             </div>
