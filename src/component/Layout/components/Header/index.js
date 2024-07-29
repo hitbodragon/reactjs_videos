@@ -21,6 +21,8 @@ import { CiUser } from 'react-icons/ci';
 import { FaCoins } from 'react-icons/fa';
 import { CiSettings } from 'react-icons/ci';
 import { IoIosLogOut } from 'react-icons/io';
+// import { UploadIcon } from '~/component/icons';
+import Image from '~/component/Image';
 
 // import { faCircleXmark } from '@fortawesome/free-regular-svg-icons';
 // import { faMagnifyingGlass, faSpinner } from '@fortawesome/free-solid-svg-icons';
@@ -150,10 +152,11 @@ function Header() {
                     )}
                     <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
                         {currentUser ? (
-                            <img
-                                src="https://cdn.pixabay.com/photo/2015/04/24/20/58/girl-738303_960_720.jpg"
+                            <Image
+                                src="https://cdn.pixabay.com/photo/2015/04/24/20/58/girl-738303_960_720.jpgg"
                                 className={cx('user-avatar')}
                                 alt="Nguyen van a"
+                                //fallback="https://www.bing.com/ck/a?!&&p=3704ec70eaf50898JmltdHM9MTcyMjIxMTIwMCZpZ3VpZD0yNzkwMjQ4Yi03Zjk2LTYzMWEtMzc1Ni0zMGM1N2VmMDYyODImaW5zaWQ9NTU2MA&ptn=3&ver=2&hsh=3&fclid=2790248b-7f96-631a-3756-30c57ef06282&u=a1L2ltYWdlcy9zZWFyY2g_cT1iZWF1dHlmdWxsJTIwaW1hZ2VzJkZPUk09SVFGUkJBJmlkPUU4NUU5RThGOEJBNkNEQzE2M0NFNjFGQjRBNzRDRUY1NDczOUVCNjc&ntb=1"
                             />
                         ) : (
                             <button className={cx('more-btn')}>
