@@ -1,24 +1,22 @@
 import classNames from 'classnames/bind';
 import styles from './AccountIteam.module.scss';
 import { IoIosCheckmark } from 'react-icons/io';
+import { Link } from 'react-router-dom';
+import Image from '~/component/Image';
 const cx = classNames.bind(styles);
 
-function AccountItem() {
+function AccountItem({ data }) {
     return (
-        <div className={cx('wrapper')}>
-            <img
-                className={cx('avatar')}
-                src="https://p16-sign-sg.tiktokcdn.com/tos-alisg-avt-0068/fed1e113786a14871b83192f1933728f~c5_300x300.webp?lk3s=a5d48078&nonce=3528&refresh_token=b0b8ebc9fcdeb385c93eaa14f46eeaf3&x-expires=1722135600&x-signature=qwB4mFAnXKy9jbF4qzpd3TpZ7gU%3D&shp=a5d48078&shcp=c1333099"
-                alt="hoa"
-            />
+        <Link to={`/@${data.nickname}`} className={cx('wrapper')}>
+            <Image className={cx('avatar')} src={data.avatar} alt={data.full_name} />
             <div className={cx('info')}>
                 <h4 className={cx('name')}>
-                    <span> Nguyen van a </span>
-                    <IoIosCheckmark className={cx('check')} />
+                    <span> {data.full_name} </span>
+                    {data.tick && <IoIosCheckmark className={cx('check')} />}
                 </h4>
-                <span className={cx('username')}>Name</span>
+                <span className={cx('username')}>{data.nickname}</span>
             </div>
-        </div>
+        </Link>
     );
 }
 

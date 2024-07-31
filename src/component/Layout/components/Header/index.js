@@ -1,15 +1,11 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
 import classNames from 'classnames/bind';
-import { AiTwotoneCloseCircle, AiOutlineSearch, AiOutlineLoading } from 'react-icons/ai';
 import Tippy from '@tippyjs/react';
-import HeadlessTippy from '@tippyjs/react/headless';
-
 import Button from '~/component/Button';
-import { Wrapper as PopperWrapper } from '~/component/Popper';
 import styles from './Header.module.scss';
 import images from '~/assets/images';
-import AccountItem from '../AccountIteam';
+import Search from '~/component/Layout/components/Search';
+
 import { SlOptionsVertical } from 'react-icons/sl';
 import Menu from '~/component/Popper/Menu';
 import { MdLanguage } from 'react-icons/md';
@@ -60,12 +56,6 @@ const MENU_ITEMS = [
 ];
 
 function Header() {
-    const [searchResults, setSearchResults] = useState([]);
-    useEffect(() => {
-        setTimeout(() => {
-            setSearchResults([]);
-        }, 0);
-    });
     // Handle logc
     const handleMenuChange = (menuItem) => {
         switch (menuItem.type) {
@@ -106,35 +96,11 @@ function Header() {
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
-                <div className={cx('logo')}>
-                    <img src={images.logo} alt="tiktok" />
-                </div>
-                <HeadlessTippy
-                    interactive
-                    visible={searchResults.length > 0}
-                    render={(attrs) => (
-                        <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-                            <PopperWrapper>
-                                <h4 className={cx('search-title')}> Acounts</h4>
-                                <AccountItem />
-                                <AccountItem />
-                                <AccountItem />
-                            </PopperWrapper>
-                        </div>
-                    )}
-                >
-                    <div className={cx('search')}>
-                        <input placeholder="Search accounts and videos" spellCheck={false} />
-                        <button className={cx('clear')}>
-                            <AiTwotoneCloseCircle />
-                        </button>
-                        <AiOutlineLoading className={cx('loading')} />
+                {/* <div className={cx('logo')}> */}
+                <img src={images.logo} alt="tiktok" />
+                {/* </div> */}
+                <Search />
 
-                        <button className={cx('search-btn')}>
-                            <AiOutlineSearch />
-                        </button>
-                    </div>
-                </HeadlessTippy>
                 <div className={cx('actions')}>
                     {currentUser ? (
                         <>
