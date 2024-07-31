@@ -5,7 +5,8 @@ import Button from '~/component/Button';
 import styles from './Header.module.scss';
 import images from '~/assets/images';
 import Search from '~/component/Layout/components/Search';
-
+import { Link } from 'react-router-dom';
+import routesConfig from '~/config/router';
 import { SlOptionsVertical } from 'react-icons/sl';
 import Menu from '~/component/Popper/Menu';
 import { MdLanguage } from 'react-icons/md';
@@ -97,7 +98,10 @@ function Header() {
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
                 {/* <div className={cx('logo')}> */}
-                <img src={images.logo} alt="tiktok" />
+                {/* đưa về tang chủ */}
+                <Link to={routesConfig.home}>
+                    <img src={images.logo} alt="tiktok" />
+                </Link>
                 {/* </div> */}
                 <Search />
 

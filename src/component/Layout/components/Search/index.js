@@ -27,7 +27,6 @@ function Search() {
         const fetchApi = async () => {
             setLoading(true);
             const results = await searchServices.search(debounce);
-
             setSearchResults(results);
             setLoading(false);
         };
@@ -35,6 +34,18 @@ function Search() {
     }, [debounce]);
     const handleHideResult = () => {
         setShowResults(false);
+    };
+    const handleChange = (e) => {
+        const searchValue = e.target.value;
+        // // nếu bắt đầu bằng dấu cách hoặc trim ko có giá trị
+        // if (searchValue.startsWith(' ') || !searchValue.trim()) {
+        //     return;
+        // }
+        // setSearchValue(e.target.value);
+        // nếu ký tự đầu tiên ko phải khoản trắng và  nhập dấu cách
+        if (!searchValue.startsWith(' ')) {
+            return setSearchValue(searchValue);
+        }
     };
     return (
         <HeadlessTippy
@@ -59,7 +70,7 @@ function Search() {
                     value={searchValue}
                     placeholder="Search accounts and videos"
                     spellCheck={false}
-                    onChange={(e) => setSearchValue(e.target.value)}
+                    onChange={handleChange}
                     onFocus={() => setShowResults(true)}
                 />
                 {!!searchValue && !loading && (
@@ -74,7 +85,7 @@ function Search() {
                     </button>
                 )}
 
-                {loading && <AiOutlineLoading className={cx('loading')} />}
+                {loading && <AiOutlineLoading className={cx('loading')} onMouseDown={(e) => e.preventDefault()} />}
                 <button className={cx('search-btn')}>
                     <AiOutlineSearch />
                 </button>
